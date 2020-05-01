@@ -17,3 +17,19 @@ def ScoreForWord(word):
 	for i in word:
 		sum += ScoreForLetter(i)
 	return sum
+
+
+def ScoreFoxText(text):
+	sum = 0
+	text = text.split()
+	for i in text:
+		sum += ScoreForWord(i)
+	return sum
+
+
+def main():
+	return 0
+
+
+if __name__ == '__main__':
+	main()
