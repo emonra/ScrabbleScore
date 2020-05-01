@@ -10,3 +10,10 @@ def ScoreForLetter(letter):
 		'Q': 10, 'Z': 10
 		}
 	return score.get(letter, 0)
+
+
+def ScoreForWord(word):
+	sum = 0
+	for i in word:
+		sum += ScoreForLetter(i)
+	return sum
