@@ -36,6 +36,7 @@ def ScoreOfFile(filepath):
 
 
 def NumberOfWords(filepath):
+def TotalScore():
 	text = open(filepath, 'r').read().split()
 	Number = len(text)
 	for i in text:
@@ -45,13 +46,19 @@ def NumberOfWords(filepath):
 	return Number
 
 
+def ListOfFilePathsInFolder(folderpath):
+	from os import listdir, getcwd
+	from os.path import isfile, join
+	files = [join(join(getcwd(), "Resources"), f) for f in listdir(folderpath) if isfile(join(folderpath, f))]
+	return files
+
+
 def main():
-	from pathlib import Path
-	filepath = Path("The Complete Works of William Shakespeare.txt")
+	filepath = "Resources/The Complete Works of William Shakespeare.txt"
 	Score = ScoreOfFile(filepath)
-	NoOfWords = NumberOfWords(filepath)
-	average = Score / NoOfWords
-	print(Score, NoOfWords, average)
+	NoOfWords = FileWordCount(filepath)
+	Average = Score/NoOfWords
+	print("Total score:", Score, "\nNumber of words:", NoOfWords,"\nAverage score per word:", Average)
 	return 0
 
 
