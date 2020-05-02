@@ -31,12 +31,27 @@ def ScoreOfText(text):
 
 def ScoreOfFile(filepath):
 	FileRead = open(filepath, 'r')
-	return ScoreOfText(FileRead.read())
+	score = ScoreOfText(FileRead.read())
+	return score
+
+
+def NumberOfWords(filepath):
+	text = open(filepath, 'r').read().split()
+	Number = len(text)
+	for i in text:
+		#one letter words are not allowed
+		if len(i) == 1:
+			Number -= 1
+	return Number
 
 
 def main():
-	filepath = #insert file path here
-	print(ScoreOfFile(filepath))
+	from pathlib import Path
+	filepath = Path("The Complete Works of William Shakespeare.txt")
+	Score = ScoreOfFile(filepath)
+	NoOfWords = NumberOfWords(filepath)
+	average = Score / NoOfWords
+	print(Score, NoOfWords, average)
 	return 0
 
 
