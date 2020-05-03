@@ -35,8 +35,18 @@ def ScoreOfFile(filepath):
 	return score
 
 
-def NumberOfWords(filepath):
+#Total summary of the folder Resources
 def TotalScore():
+	import os
+	from os.path import join
+	files = ListOfFilePathsInFolder("Resources")
+	sum = 0
+	for file in files:
+		sum += ScoreOfFile(file)
+	return sum
+
+
+def FileWordCount(filepath):
 	text = open(filepath, 'r').read().split()
 	Number = len(text)
 	for i in text:
@@ -44,6 +54,14 @@ def TotalScore():
 		if len(i) == 1:
 			Number -= 1
 	return Number
+
+
+def FolderWordCount(folderpath):
+	files = ListOfFilePathsInFolder(folderpath)
+	sum = 0
+	for file in files:
+		sum += FileWordCount(file)
+	return sum
 
 
 def ListOfFilePathsInFolder(folderpath):
@@ -54,7 +72,7 @@ def ListOfFilePathsInFolder(folderpath):
 
 
 def main():
-	filepath = "Resources/The Complete Works of William Shakespeare.txt"
+	filepath = "Resources/The Complete Works of Charles Dickens.txt"
 	Score = ScoreOfFile(filepath)
 	NoOfWords = FileWordCount(filepath)
 	Average = Score/NoOfWords
